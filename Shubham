@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+int  fact=1,i,k=0,row,j;
+cout<<"\t\t\t   Display pascal Triangle";
+cout<<"\n\n\t\t     Created By:- Shubham Singh";
+cout<<"\n\n\n How Many Row Do you want to input:";
+cin>>row;
+cout<<"\n Pascal's Triangle:\n";
+while(k<row)
+{
+for(i=40-3*k;i>0;i--)
+cout<<" ";
+for(j=0;j<=k;j++)
+{
+if((j==0)||(k==0))
+fact=1;
+else
+fact=(fact*(k-j+1))/j;
+cout<<"      ";
+cout<<fact;
+}
+cout<<"\n\n\n";
+k++;
+}
+return 0;
+}

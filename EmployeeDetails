@@ -1,0 +1,37 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+class employee
+{
+int emp_no;
+char emp_name[20];
+float emp_sal;
+public:
+void get();
+void display();
+};
+void employee::get()
+{
+	cout<<"\n\t.............Devloped By..............\n\t"<<endl;
+	cout<<"\n\t            Shubham Singh              \n\t"<<endl;
+cout<<"Enter employee number:";
+cin>>emp_no;
+cout<<"Enter employee name:";
+cin>>emp_name;
+cout<<"Enter salary:";
+cin>>emp_sal;
+}
+void employee::display()
+{
+cout<<"\n\tEmployee Details";
+cout<<"\n\t   Number : "<<emp_no;
+cout<<"\n\t    Name  : "<<emp_name;
+cout<<"\n\t   Salary : "<<emp_sal;
+}
+int main()
+{
+employee e;
+e.get();
+e.display();
+return 0;
+}

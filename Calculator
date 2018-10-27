@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	char S;
+	float a,b;
+	cout<<"Enter two Number=";
+	cin>>a>>b;
+	cout<<"Enter the select operator + or - or * or / ";
+	cin>>S;
+	switch(S)
+	{
+		case '+':
+			cout<<a+b;
+			break;
+		case '-':
+			cout<<a-b;
+			break;
+		case '*':
+			cout<<a*b;
+			break;
+		case '/':
+			cout<<a/b;
+			break;
+		default:
+		cout<<"Error case not senstive";
+		return 0;	
+	}
+}

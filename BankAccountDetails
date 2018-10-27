@@ -1,0 +1,76 @@
+#include<iostream>
+using namespace std;
+class bank
+{
+	char name[20];
+	int acno;
+	char actype[4];
+	float balance;
+public:
+	void init();
+	void deposit();
+	void withdraw();
+	void disp_det();
+};
+void bank :: init()
+{
+cout<<"New Account"<<endl;
+cout<<"Enter the Name of the depositor :"<<endl;
+cin>>name;
+cout<<"Enter the Account Number : "<<endl;
+cin>>acno;
+cout<<"Enter the Account Type : (CURR/SAVG/FD/RD/DMAT) "<<endl;
+cin>>actype;
+cout<<"Enter the Amount to Deposit :"<<endl;
+cin >>balance;
+}
+void bank :: deposit()
+{
+float more;
+cout <<"Depositing"<<endl;
+cout<<"Enter the amount to deposit :"<<endl;
+cin>>more;
+balance+=more;
+}
+void bank :: withdraw()
+{
+float amt;
+cout<<"Withdrwal"<<endl;
+cout<<"Enter the amount to withdraw :"<<endl;
+cin>>amt;
+balance-=amt;
+}
+void bank :: disp_det()
+{
+cout<<"Account Details"<<endl;
+cout<<"Name of the depositor : "<<name<<endl;
+cout<<"Account Number        : "<<acno<<endl;
+cout<<"Account Type          : "<<actype<<endl;
+cout<<"Balance               : $"<<balance<<endl;
+}
+int main()
+{
+bank obj;
+int choice=1;
+while (choice != 0 )
+{
+cout<<"Enter 0 to exit:\n 1. Initialize a new acc:\n 2. Deposit:\n 3.Withdraw:\n 4.See A/c Status:\n";
+cin>>choice;
+switch(choice)
+{
+	case 0 :obj.disp_det();
+		cout<<"EXITING PROGRAM.";
+		break;
+	case 1 : obj.init();
+		break;
+	case 2: obj.deposit();
+		break;
+	case 3 : obj.withdraw();
+		break;
+	case 4: obj.disp_det();
+		break;
+	default: cout<<"Illegal Option"<<endl;
+}
+}
+return 0;
+}

@@ -1,0 +1,118 @@
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+struct Node
+{
+	int data;
+	struct Node *leftChild;
+	struct Node *rightChild;
+};
+typedef struct Node NODE;
+NODE *newNode(int n);
+void insertItem(NODE **root,int data);
+void Inorder(NODE *root);
+NODE *search(NODE *root,int dataToSearch);
+void remove(NODE **node, int data);
+NODE** getSuccessor(NODE **node);
+int main()
+{
+	NODE *head=NULL;
+	int choice;
+	insertItem(&head,50);
+	insertItem(&head,30);
+	insertItem(&head,20);
+	insertItem(&head,40);
+	insertItem(&head,70);
+	insertItem(&head,60);
+	insertItem(&head,80);
+	NODE *temp=search(head,20);
+	if(temp==NULL)
+		cout<<"Node with given data is not found!!"<<endl;
+	else
+		cout<<"Node with given data is found..."<<endl;
+	cout<<"Inorder traversal of the tree berfore deletion of the 50::";
+	Inorder(head);
+	remove(&head,50);
+	cout<<endl;
+	cout<<"Inorder traversal of the tree after deletion of the 50::";
+	Inorder(head);
+}
+NODE *newNode(int n)
+{
+	NODE *p=(NODE *)malloc(sizeof(NODE));
+	p->data=n;
+	p->leftChild=NULL;
+	p->rightChild=NULL;
+	return p;
+}
+void insertItem(NODE **root,int data)
+{
+	if(*root==NULL)
+	{
+		*root=newNode(data);
+	}
+	else if(data<(*root)->data)
+		insertItem(&(*root)->leftChild,data);
+	else
+		insertItem(&(*root)->rightChild,data);
+}
+NODE *search(NODE *root,int dataToSearch)
+{
+	if(root==NULL || root->data==dataToSearch)
+	{
+		return root;
+	}
+	else if(root->data<dataToSearch)
+		return search(root->rightChild,dataToSearch);
+	else
+		return search(root->leftChild,dataToSearch);
+}
+void Inorder(NODE *root)
+{
+	if(root)
+	{
+		Inorder(root->leftChild);
+		cout<<root->data<<" ";
+		Inorder(root->rightChild);
+	}
+}
+NODE** getSuccessor(NODE **node)
+   {
+     NODE **tmp = node;
+     while((*tmp)->leftChild!=NULL)
+       tmp = &(*tmp)->leftChild;
+     return tmp;
+   }
+void remove(NODE **node, int data)
+{
+	NODE *temp;
+    if(*node == NULL)
+    {
+       cerr<<"Node does not exist\n";
+    }
+    if(data == (*node)->data)
+    {
+    	if((*node)->rightChild== NULL)
+        {
+          *node = (*node)->leftChild;
+        }
+        else if((*node)->leftChild== NULL)
+        {
+          *node = (*node)->rightChild;
+        }
+        else
+        {
+          NODE **successor = getSuccessor(&(*node)->rightChild);
+          (*node)->data=(*successor)->data;
+          remove(successor,(*successor)->data);
+        }
+    }
+    else if(data < (*node)->data)
+    {
+        remove(&(*node)->leftChild, data);
+    }
+    else
+    {
+        remove(&(*node)->rightChild, data);
+    }
+}
